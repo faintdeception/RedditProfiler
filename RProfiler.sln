@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RProfiler", "RProfiler\RProfiler.csproj", "{4C301072-A824-4CBC-AEA2-B8BA526109AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RProfiler.Web", "RProfiler.Web\RProfiler.Web.csproj", "{F203A758-F839-4F49-AD5E-4BBA78F0C810}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C301072-A824-4CBC-AEA2-B8BA526109AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C301072-A824-4CBC-AEA2-B8BA526109AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C301072-A824-4CBC-AEA2-B8BA526109AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C301072-A824-4CBC-AEA2-B8BA526109AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F203A758-F839-4F49-AD5E-4BBA78F0C810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F203A758-F839-4F49-AD5E-4BBA78F0C810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F203A758-F839-4F49-AD5E-4BBA78F0C810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F203A758-F839-4F49-AD5E-4BBA78F0C810}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

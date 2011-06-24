@@ -1,0 +1,12 @@
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\Bin\Debug\RProfiler.dll
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\Bin\Debug\RProfiler.pdb
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\ResolveAssemblyReference.cache
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\App.g.i.cs
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\MainPage.g.i.cs
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\RProfiler.g.resources
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\RProfiler.dll
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\RProfiler.pdb
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\Bin\Debug\AppManifest.xaml
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\Bin\Debug\RProfiler.xap
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\Bin\Debug\RProfilerTestPage.html
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler\obj\Debug\XapCacheFile.xml

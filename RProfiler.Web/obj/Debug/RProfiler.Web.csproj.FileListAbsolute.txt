@@ -1,0 +1,5 @@
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\bin\RProfiler.Web.dll
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\bin\RProfiler.Web.pdb
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\ResolveAssemblyReference.cache
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.dll
+c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.pdb

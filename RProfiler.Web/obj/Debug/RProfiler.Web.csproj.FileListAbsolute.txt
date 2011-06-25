@@ -3,3 +3,8 @@ c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\b
 c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\ResolveAssemblyReference.cache
 c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.dll
 c:\users\zruffin\documents\visual studio 2010\Projects\RProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.pdb
+C:\Users\ZRuffin\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler.Web\bin\RProfiler.Web.dll
+C:\Users\ZRuffin\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler.Web\bin\RProfiler.Web.pdb
+C:\Users\ZRuffin\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ZRuffin\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.dll
+C:\Users\ZRuffin\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler.Web\obj\Debug\RProfiler.Web.pdb

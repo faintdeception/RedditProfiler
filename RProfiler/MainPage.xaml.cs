@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Json;
 using System.IO;
-using System.Xml;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Browser;
 
 namespace RProfiler
 {
@@ -31,7 +30,9 @@ namespace RProfiler
 
         private void ProfileMeButton_Click(object sender, RoutedEventArgs e)
         {
-            Uri url = new Uri("http://www.reddit.com/user/" + this.userName.Text + "/.xml", UriKind.Absolute);
+            // Create a Uri with the address to the Yahoo Pipe.
+            Uri url = new Uri(
+              @"http://pipes.yahooapis.com/pipes/pipe.run?_id=2d136fd8e0a154f6bb996b216d590766&_render=json&userName=faintdeception");
             WebClient client = new WebClient();
             client.DownloadStringAsync(url);
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(Client_DownloadStringCompleted);
@@ -39,46 +40,59 @@ namespace RProfiler
 
         void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Error != null)
-                MessageBox.Show(e.Error.Message);
-            //Access the values from the event handler code.
+            List<RedditEntry> entries = new List<RedditEntry>();
+
+            // Initialize the deserializer.
+            DataContractJsonSerializer jsonSerializer =
+              new DataContractJsonSerializer(typeof(RedditEntry));
+
             try
             {
-                StringReader stream = new StringReader(e.Result);
-                XmlReader reader = XmlReader.Create(stream);
-                string test;
-                if (!reader.IsEmptyElement)
+                // Dig through the JSON and find the array of results.
+                // The tree is: response -> value -> items -> [0] -> data -> children[]
+                JsonObject jsonResponse = (JsonObject)JsonObject.Load(new StringReader(e.Result));
+                JsonObject jsonValue = (JsonObject)jsonResponse["value"];
+                JsonObject jsonItems = (JsonObject)((JsonArray)jsonValue["items"])[0];
+                JsonObject jsonData = (JsonObject)jsonItems["channel"];
+                JsonArray jsonChildren = (JsonArray)jsonData["item"];
+
+                // Iterate through every child.
+                foreach (JsonObject child in jsonChildren)
                 {
-                    while (reader.Read())
+
+                    // Create a memory stream of the JSON text
+                    // to be passed to the deserializer.
+                    using (MemoryStream memStream =
+                      new MemoryStream(UTF8Encoding.UTF8.GetBytes(child.ToString())))
                     {
-                        if (reader.MoveToAttribute("item"))
-                        {
-                            switch (reader.Value.ToString())
-                            {
-                                case "endpoint":
-                                    reader.MoveToElement();
-                                    test = reader.ReadElementContentAsString();
-                                    string hostUri = Application.Current.Host.Source.AbsoluteUri;
-
-                                    //string targetUrl = EndPoint.Split('/')[2];
-
-//                                    this.ApamEndpoint = "http://" + targetUrl + "/IdentityXAPAM/Auth";
-//#if DEBUG
-//                                    MessageBox.Show(this.ApamEndpoint.ToString());
-//#endif
-                                    break;
-                            }
-                        }
+                        // Add the entry to the collection.
+                        entries.Add((RedditEntry)jsonSerializer.ReadObject(memStream));
                     }
+
+
                 }
-                else
+
+                foreach (RedditEntry entry in entries)
                 {
-                    MessageBox.Show("Unable to Find configuration Parameters");
+                    //Get the uri of the post.
+                    string uri = entry.Link;
+
+
+                    //Split out the subreddit from the uri.
+                    StringBuilder subredditParser = new StringBuilder(uri.ToString().Split('/')[4]);
+
+                    subredditParser = subredditParser.Replace("\\", string.Empty).Replace("/", string.Empty);
+
+                    string subreddit = subredditParser.ToString();
+
+                    //this.subreddits.Add(subreddit);
                 }
+
+                //PopulateTagItems();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Configuration file not found or unable to access it.", "Config error", MessageBoxButton.OK);
+                MessageBox.Show("Failed to parse JSON: " + ex.ToString());
             }
         }
 

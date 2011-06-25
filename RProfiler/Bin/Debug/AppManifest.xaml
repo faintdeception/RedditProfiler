@@ -1,5 +1,6 @@
 ﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="RProfiler" EntryPointType="RProfiler.App" RuntimeVersion="4.0.50826.0">
   <Deployment.Parts>
     <AssemblyPart x:Name="RProfiler" Source="RProfiler.dll" />
+    <AssemblyPart x:Name="System.Json" Source="System.Json.dll" />
   </Deployment.Parts>
 </Deployment>

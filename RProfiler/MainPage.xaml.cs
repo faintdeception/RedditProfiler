@@ -10,11 +10,45 @@ using System.Text;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Browser;
+using System.Collections.ObjectModel;
 
 namespace RProfiler
 {
     public partial class MainPage : UserControl
     {
+
+
+        #region Subreddits (DependencyProperty)
+
+        /// <summary>
+        /// The collection of subreddits
+        /// </summary>
+        public ObservableCollection<WeightedSubreddit> Subreddits
+        {
+            get { return (ObservableCollection<WeightedSubreddit>)GetValue(SubredditsProperty); }
+            set { SetValue(SubredditsProperty, value); }
+        }
+        public static readonly DependencyProperty SubredditsProperty =
+            DependencyProperty.Register("Subreddits", typeof(ObservableCollection<WeightedSubreddit>), typeof(MainPage),
+            new PropertyMetadata(null, new PropertyChangedCallback(OnSubredditsChanged)));
+
+        private static void OnSubredditsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((MainPage)d).OnSubredditsChanged(e);
+        }
+
+        protected virtual void OnSubredditsChanged(DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        #endregion //Subreddits
+        
+
+
+
+                
+        
+        
         public MainPage()
         {
             InitializeComponent();
@@ -23,16 +57,18 @@ namespace RProfiler
             this.userName.Text = "faintdeception";
 #endif
 
-            
+            this.Subreddits = new ObservableCollection<WeightedSubreddit>();
+
+
         }
 
         
 
         private void ProfileMeButton_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             // Create a Uri with the address to the Yahoo Pipe.
             Uri url = new Uri(
-              @"http://pipes.yahooapis.com/pipes/pipe.run?_id=2d136fd8e0a154f6bb996b216d590766&_render=json&userName=faintdeception");
+              @"http://pipes.yahooapis.com/pipes/pipe.run?_id=2d136fd8e0a154f6bb996b216d590766&_render=json&userName=" + this.userName.Text);
             WebClient client = new WebClient();
             client.DownloadStringAsync(url);
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(Client_DownloadStringCompleted);
@@ -41,7 +77,7 @@ namespace RProfiler
         void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             List<RedditEntry> entries = new List<RedditEntry>();
-
+            this.Subreddits.Clear();
             // Initialize the deserializer.
             DataContractJsonSerializer jsonSerializer =
               new DataContractJsonSerializer(typeof(RedditEntry));
@@ -72,6 +108,9 @@ namespace RProfiler
 
                 }
 
+                Dictionary<string, int> subredditWeigher = new Dictionary<string, int>();
+
+
                 foreach (RedditEntry entry in entries)
                 {
                     //Get the uri of the post.
@@ -85,8 +124,21 @@ namespace RProfiler
 
                     string subreddit = subredditParser.ToString();
 
-                    //this.subreddits.Add(subreddit);
+                    if (subredditWeigher.ContainsKey(subreddit))
+                        subredditWeigher[subreddit]++;
+                    else
+                        subredditWeigher.Add(subreddit,1);                    
                 }
+
+
+                foreach (var item in subredditWeigher)
+                {
+                    this.Subreddits.Add(new WeightedSubreddit() { Name = item.Key, Weight = item.Value });
+                }
+
+                this.SubredditList.ItemsSource = this.Subreddits;
+                
+                
 
                 //PopulateTagItems();
             }
@@ -97,5 +149,11 @@ namespace RProfiler
         }
 
         
+    }
+
+    public class WeightedSubreddit
+    {
+        public string Name { get; set; }
+        public int Weight { get; set; }
     }
 }

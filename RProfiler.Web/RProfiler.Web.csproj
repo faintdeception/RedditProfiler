@@ -14,6 +14,7 @@
     <AssemblyName>RProfiler.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightApplicationList>{4C301072-A824-4CBC-AEA2-B8BA526109AA}|..\RProfiler\RProfiler.csproj|ClientBin|False</SilverlightApplicationList>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,7 +76,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59151</DevelopmentServerPort>
+          <DevelopmentServerPort>55626</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

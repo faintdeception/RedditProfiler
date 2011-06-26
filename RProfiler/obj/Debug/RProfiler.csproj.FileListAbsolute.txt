@@ -56,3 +56,15 @@ C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\obj
 C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\obj\Debug\RProfiler.dll
 C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\obj\Debug\RProfiler.pdb
 C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\obj\Debug\XapCacheFile.xml
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\Newtonsoft.Json.WindowsPhone.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\System.Xml.Linq.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\System.Xml.Linq.xml
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\de\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\es\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\fr\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\it\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\ja\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\ko\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\ru\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\zh-Hans\System.Xml.Linq.resources.dll
+C:\Users\Zach\Documents\Visual Studio 2010\Projects\RedditProfiler\RProfiler\Bin\Debug\zh-Hant\System.Xml.Linq.resources.dll

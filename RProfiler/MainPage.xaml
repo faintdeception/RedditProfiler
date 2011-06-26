@@ -3,31 +3,180 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot" Background="OrangeRed">
+    <Grid x:Name="LayoutRoot" Background="Black">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="StalkState">
+                <VisualState x:Name="Outside"/>
+                <VisualState x:Name="Inside">
+                    <Storyboard>
+                        <DoubleAnimation
+                            Storyboard.TargetName="OutsideStackPanel"
+                            Storyboard.TargetProperty="Opacity"
+                            From="1.0" To="0"
+                            Duration="0:0:1"
+                            />
+
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="OutsideStackPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+
+                                <DiscreteObjectKeyFrame.Value>
+
+                                    <Visibility>Collapsed</Visibility>
+
+                                </DiscreteObjectKeyFrame.Value>
+
+                            </DiscreteObjectKeyFrame>
+
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation
+                            Storyboard.TargetName="InsideStackPanel"
+                            Storyboard.TargetProperty="Opacity"
+                            From="0" To="1"
+                            Duration="0:0:1"
+                            />
+
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="InsideStackPanel" Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+
+                                <DiscreteObjectKeyFrame.Value>
+
+                                    <Visibility>Visible</Visibility>
+
+                                </DiscreteObjectKeyFrame.Value>
+
+                            </DiscreteObjectKeyFrame>
+
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <DoubleAnimation
+                            Storyboard.TargetName="subredditListBorder"
+                            Storyboard.TargetProperty="Opacity"
+                            From="0" To="1"
+                            Duration="0:0:1"
+                            />
+
+                        <DoubleAnimation
+                            Storyboard.TargetName="StalkTarget"
+                            Storyboard.TargetProperty="Opacity"
+                            From="0" To="1"
+                            Duration="0:0:1"
+                            />
+
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="StalkTarget" Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+
+                                <DiscreteObjectKeyFrame.Value>
+
+                                    <Visibility>Visible</Visibility>
+
+                                </DiscreteObjectKeyFrame.Value>
+
+                            </DiscreteObjectKeyFrame>
+
+                        </ObjectAnimationUsingKeyFrames>
+
+
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="DataFetchState">
+                <VisualState x:Name="Downloaded"/>
+                <VisualState x:Name="Downloading">
+                    <Storyboard>
+                        <DoubleAnimation
+                            Storyboard.TargetName="ProgressBar"
+                            Storyboard.TargetProperty="Opacity"
+                            From="0" To="1"
+                            Duration="0:0:1"
+                            />
+
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ProgressBar" Storyboard.TargetProperty="(UIElement.Visibility)">
+
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+
+                                <DiscreteObjectKeyFrame.Value>
+
+                                    <Visibility>Visible</Visibility>
+
+                                </DiscreteObjectKeyFrame.Value>
+
+                            </DiscreteObjectKeyFrame>
+
+                        </ObjectAnimationUsingKeyFrames>
+
+
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.001" Storyboard.TargetProperty="(Control.IsEnabled)" Storyboard.TargetName="GoDeeperButton">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <system:Boolean>False</system:Boolean>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <DoubleAnimation
+                            Storyboard.TargetName="GoDeeperButton"
+                            Storyboard.TargetProperty="Opacity"
+                            From="1" To=".5"
+                            Duration="0:0:1"
+                            />
+
+
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-        </Grid.RowDefinitions>
-        <ListBox x:Name="SubredditList">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Gray" BorderThickness="1">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" />
-                            <TextBlock Text=" " />
-                            <TextBlock Text="{Binding Weight}" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel VerticalAlignment="Center" Grid.Row="1">
-        <TextBox x:Name="userName" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120" Margin="5"/>
-            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Profile Me" Margin="5" Click="ProfileMeButton_Click" />
+        </Grid.RowDefinitions>      
+        
+        <ProgressBar Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed" x:Name="ProgressBar"/>
+        
+        
+        <StackPanel Orientation="Horizontal" Opacity="0" x:Name="StalkTarget" Visibility="Collapsed">
+            <TextBlock  Margin="4"  FontSize="23" Foreground="OrangeRed" FontStyle="Italic" Text="{Binding Text, ElementName=userName, Mode=OneWay}"/>
+            <TextBlock Margin="4" FontSize="23" Foreground="OrangeRed" Text="{Binding CurrentDepth, Converter={StaticResource DepthFormat}}" />
+        </StackPanel>
+        <Border Grid.RowSpan="2" x:Name="subredditListBorder" Opacity="0" BorderBrush="SkyBlue" BorderThickness="1" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="SubredditList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text=" " />
+                                    <TextBlock Text="{Binding Weight}" FontFamily="Lucida Sans Unicode"  FontStyle="Italic" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+            </Grid>
+
+        </Border>
+        <StackPanel x:Name="InsideStackPanel" Opacity="0" Visibility="Collapsed" VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Stretch">
+            <Button x:Name="ResetButton" Content="Get Out" Click="GetOut_ButtonClick"/>
+            <Button x:Name="GoDeeperButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Go Deeper" Margin="5" Click="GoDeeperButton_Click" />
+        </StackPanel>
+
+        <StackPanel x:Name="OutsideStackPanel" Visibility="Visible" VerticalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Stretch">
+            <TextBox x:Name="userName" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="400" Margin="5" GotFocus="userName_GotFocus" />
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Go Inside" Margin="5" Click="ProfileMeButton_Click" />
         </StackPanel>
     </Grid>
 </UserControl>
